@@ -36,20 +36,20 @@ app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/users/profile", require("./routes/profileRoutes"));
 app.use("/api/posts", require("./routes/postRoutes"));
 
-// Serve Frontend
-if (process.env.NODE_ENV === "production") {
-  // Set build folder as static
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+// // Serve Frontend
+// if (process.env.NODE_ENV === "production") {
+//   // Set build folder as static
+//   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  // FIX: below code fixes app crashing on refresh in deployment
-  app.get("*", (_, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-  });
-} else {
-  app.get("/", (_, res) => {
-    res.status(200).json({ message: "Welcome to the Social Gram API" });
-  });
-}
+//   // FIX: below code fixes app crashing on refresh in deployment
+//   app.get("*", (_, res) => {
+//     res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+//   });
+// } else {
+//   app.get("/", (_, res) => {
+//     res.status(200).json({ message: "Welcome to the Social Gram API" });
+//   });
+// }
 
 app.use(errorHandler);
 
